@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\PropertyController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,7 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home', function () {
+        return view('home');
+    })->middleware(['verified']);
 
-Route::get('/home', function () {
-    return view('home');
-})->middleware(['auth', 'verified']);
+    Route::get('/properties', [PropertyController::class, 'index']);
+});
