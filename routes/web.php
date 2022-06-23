@@ -14,13 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 Route::middleware(['auth'])->group(function () {
-    Route::get('/home', function () {
+    Route::get('/', function () {
         return view('home');
     })->middleware(['verified']);
 
-    Route::get('/properties', [PropertyController::class, 'index']);
+    Route::prefix('properties')->group(function () {
+        Route::get('/', [PropertyController::class, 'index']);
+        Route::get('/add', function () {
+            return view('properties.add');
+        });
+    });
 });
