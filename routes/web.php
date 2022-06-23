@@ -20,9 +20,13 @@ Route::middleware(['auth'])->group(function () {
     })->middleware(['verified']);
 
     Route::prefix('properties')->group(function () {
-        Route::get('/', [PropertyController::class, 'index']);
+        Route::get('/', [PropertyController::class, 'index'])->name('property');
         Route::get('/add', function () {
             return view('properties.add');
         });
+        Route::post('/store', [PropertyController::class, 'store']);
+        Route::delete('/destroy/{id}', [PropertyController::class, 'destroy'])->name('deleteProperty');
     });
 });
+
+Route::get('/web', [PropertyController::class, 'show']);

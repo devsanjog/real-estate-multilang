@@ -6,8 +6,9 @@
             <div class="col-12 grid-margin">
                 <div class="card">
                     <div class="card-body">
+                        @include('elements.admin.flash-message')
                         <h4 class="card-title">Add new property</h4>
-                        <form class="form-sample">
+                        <form method="post" action="{{ url('/properties/store') }}" enctype="multipart/form-data" class="form-sample">
                             @csrf
                             <p class="card-description">
                                 Property info
@@ -17,7 +18,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Name</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" />
+                                            <input name="name" type="text" class="form-control" />
                                         </div>
                                     </div>
                                 </div>
@@ -25,7 +26,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Price</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" />
+                                            <input name="price" type="text" class="form-control" />
                                         </div>
                                     </div>
                                 </div>
@@ -94,10 +95,10 @@
                                         <label class="col-sm-3 col-form-label">Images</label>
                                         <input type="file" name="img[]" class="file-upload-default">
                                         <div class="input-group col-xs-12">
-                                            <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                                            <span class="input-group-append">
-                                              <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                                            </span>
+                                            <input name="images" type="file" class="form-control file-upload-info" placeholder="Upload Image">
+{{--                                            <span class="input-group-append">--}}
+{{--                                              <button class="file-upload-browse btn btn-primary" type="button">Upload</button>--}}
+{{--                                            </span>--}}
                                         </div>
                                     </div>
                                 </div>

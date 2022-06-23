@@ -17,14 +17,17 @@
     <div class="navbar-menu-wrapper d-flex align-items-top">
         <ul class="navbar-nav">
             <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
-                <h1 class="welcome-text">Good Morning, <span class="text-black fw-bold">John Doe</span></h1>
+                <h1 class="welcome-text">Welcome,
+                    <span class="text-black fw-bold">
+                        {!! \Auth::user()->name !!}
+                    </span></h1>
                 <h3 class="welcome-sub-text">Your performance summary this week </h3>
             </li>
         </ul>
         <ul class="navbar-nav ms-auto">
             <li class="nav-item dropdown">
-                <a class="nav-link count-indicator" id="notificationDropdown" href="#" data-bs-toggle="dropdown">
-                    <i class="icon-mail icon-lg"></i>
+                <a target="_blank" href="/web" type="button" class="btn btn-dark btn-rounded btn-icon">
+                    <i class="ti-world"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="notificationDropdown">
                     <a class="dropdown-item py-3 border-bottom">
