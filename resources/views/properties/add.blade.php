@@ -90,19 +90,19 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-12">
                                     <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label">Images</label>
+                                        <label class="col-12 col-form-label">Images</label>
                                         <input type="file" name="img[]" class="file-upload-default">
-                                        <div class="input-group col-xs-12">
-                                            <input name="images" type="file" class="form-control file-upload-info" placeholder="Upload Image">
-{{--                                            <span class="input-group-append">--}}
-{{--                                              <button class="file-upload-browse btn btn-primary" type="button">Upload</button>--}}
-{{--                                            </span>--}}
+                                        <div class="col-12">
+                                            <input name="images[]" id="img_upload" type="file" class="file" multiple
+                                                   data-show-upload="false" data-show-caption="true" data-msg-placeholder="Select {files} for upload...">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Description</label>
                                         <div class="col-sm-9">
@@ -119,4 +119,11 @@
         </div>
     </div>
 {{--    @include('properties.google-map-script')--}}
+    <script type="text/javascript">
+        $.fn.fileinputBsVersion = "3.3.7"; // if not set, this will be auto-derived
+        // initialize plugin with defaults
+        $("#img_upload").fileinput();
+        // with plugin options
+        $("#img_upload").fileinput({'showUpload':false, 'previewFileType':'any'});
+    </script>
 @endsection

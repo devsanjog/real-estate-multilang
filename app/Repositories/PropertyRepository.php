@@ -11,7 +11,6 @@ use Intervention\Image\Facades\Image;
  * Class PostRepository
  * @package App\Repositories
  */
-
 class PropertyRepository extends BaseRepository
 {
     /**
@@ -40,11 +39,25 @@ class PropertyRepository extends BaseRepository
         return Properties::class;
     }
 
-    public function createProperty(Request $request){
-        $file = $request->file('images');
-        $input = $request->all();
-        $property = $this->create($input);
+    public function createProperty(Request $request)
+    {
+        $propertyFields = [
+            'name' => $request->name,
+            'price' => $request->price,
+            'location' => $request->location,
+            'city' => $request->city,
+            'state' => $request->state,
+            'country' => $request->country,
+            'description' => $request->description,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
+        ];
+        $property = $this->create($propertyFields);
 
-        $property->addMedia($file)->toMediaCollection();
+        foreach ($request->file('images') as $image) {
+            $property->addMedia($image)->toMediaCollection();
+        }
+
+//        $property->addMedia($file)->toMediaCollection();
     }
 }
